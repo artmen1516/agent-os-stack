@@ -1,0 +1,5 @@
+[default_model]
+provider = "openai" # LiteLLM mimics the OpenAI API
+model = "ollama-cloud-gpt"
+api_key = "${LITELLM_MASTER_KEY}"
+base_url = "http://litellm:4000/v1"

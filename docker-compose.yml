@@ -1,0 +1,42 @@
+services:
+  # Ollama Cloud Gateway
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_API_KEY=${OLLAMA_API_KEY}
+    restart: always
+
+  # LiteLLM Gateway
+  litellm:
+    # Using v1.82.9 (Verified clean after the March 24th incident)
+    image: ghcr.io/berriai/litellm:main-v1.82.9
+    container_name: litellm
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm/config.yaml:/app/config.yaml
+    environment:
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    restart: always
+
+  # OpenFang Agent OS
+  openfang:
+    image: ghcr.io/rightnow-ai/openfang:latest
+    container_name: openfang
+    ports:
+      - "4200:4200"
+    volumes:
+      # We map the whole data dir to the container's /data
+      - ./openfang_data:/data
+    environment:
+      - LITELLM_URL=http://litellm:4000
+    depends_on:
+      - litellm
+    restart: always

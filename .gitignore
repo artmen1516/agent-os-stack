@@ -1,0 +1,14 @@
+# Environment Secrets
+.env
+
+# Data Persistence (The "State")
+ollama_data/
+openfang_data/
+*/logs/
+*.db
+*.log
+
+# Python/UV artifacts (if any)
+__pycache__/
+.venv/
+.uv/

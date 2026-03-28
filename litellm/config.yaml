@@ -1,0 +1,30 @@
+model_list:
+  - model_name: ollama/kimi-k2.5:cloud_arturoo1516
+    litellm_params:
+      model: ollama/kimi-k2.5:cloud
+      api_base: "http://localhost:11434"
+      api_key: "os.environ/OLLAMA_API_KEY_1"
+      priority: 2
+  - model_name: ollama/kimi-k2.5:cloud_m22210007
+    litellm_params:
+      model: ollama/kimi-k2.5:cloud
+      api_base: "http://localhost:11434"
+      api_key: "os.environ/OLLAMA_API_KEY_2"
+      priority: 3rio
+  - model_name: ollama/qwen3:4b_local
+    litellm_params:
+      model: ollama/qwen3:4b
+      api_base: "http://localhost:11434"
+      priority: 5
+  - model_name: openrouter/nvidia/nemotron-3-super-120b-a12b:free_arturoo1516
+    litellm_params:
+      model: openrouter/nvidia/nemotron-3-super-120b-a12b:free
+      api_key: "os.environ/OPENROUTER_API_KEY"
+      priority: 4
+  - model_name: github_copilot/gpt-5.3-codex_arturoo1516
+    litellm_params:
+      model: github_copilot/gpt-5.3-codex
+      priority: 1
+
+general_settings:
+  master_key: "SECRET_KEY"
